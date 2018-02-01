@@ -8,11 +8,11 @@
 export default {
   name: 'PhotoDescription',
   props: ['description'],
-  data () {
-    return {
-      description: ''
-    }
-  }
+  // data () {
+  //   return {
+  //     description: ''
+  //   }
+  // }
 }
 </script>
 

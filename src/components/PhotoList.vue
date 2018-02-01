@@ -2,7 +2,7 @@
   <div class="thumbnail-list">
       <h1>Photo Roll</h1>
         <ul>
-        <li v-for="photo in photos" :key="photo">
+        <li v-for="(photo, index) in photos" :key="index">
             <img :src="photo.url" @click="selectPhoto(photo)" />
             <p>{{photo.title}}</p>
         </li>
