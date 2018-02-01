@@ -36,7 +36,6 @@ export default {
 .photo-detail {
     height: 100%;
     width: 58%;
-    display: inline-block;
     float: right;
 }
 
