@@ -6,24 +6,32 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    mainPhotoObj: jsonData[0],
-    selectedPhotoURL: jsonData[0].url,
-    selectedPhotoTitle: jsonData[0].title,
-    selectedPhotoDescription: jsonData[0].description,
-    selectedPhotoRating: jsonData[0].rating
+    mainPhotoObj: jsonData[0]
   },
+  
   mutations: {
     selectPhoto: (state, payload) => {
       state.mainPhotoObj = payload
     }
   },
+
   actions: {
     selectPhotoAction ({ commit }, payload) {
       commit('selectPhoto', payload)
-      console.log(payload)
+      // console.log(payload)
     }
+  },
+
+  getters: {
+    mainPhotoObj: state => state.mainPhotoObj
   }
 })
+
+
+
+
+
+
 
 // export const getters = {
 //   mainPhoto (state) {

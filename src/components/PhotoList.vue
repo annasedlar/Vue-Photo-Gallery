@@ -11,16 +11,11 @@
 </template>
 
 <script>
-
-// import $ from 'jquery';
 import jsonData from '../api.json'
-import { EventBus } from '../eventBus.js'
-import { mapState, mapGetters, mapActions } from 'vuex'
-import store from '../store/index.js'
-
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  /* eslint-disable */
+
   name: 'PhotoList',
   data () {
     return {
@@ -28,14 +23,9 @@ export default {
       selectedPhoto: jsonData[0],
     }
   },
-  computed: {
+  methods: {
       selectPhoto(photo){
-        store.dispatch('selectPhotoAction')
-        console.log('dispatched')
-        // this.selectedPhoto = photo
-        //   Here is where you will use VueX, for now, event bus
-        // EventBus.$emit('selectedPhoto', this.selectedPhoto);
-        // this.$store.commit('selectPhoto', this.selectedPhoto)
+        this.$store.dispatch('selectPhotoAction', photo)
       },
       ...mapGetters([
             'mainPhoto',
@@ -46,7 +36,7 @@ export default {
         //     url: '../api.json',
         //     method: 'GET',
         //     success: function (data) {
-        //         console.log("this returns plain index.html...? : '\n\n\n\n\n\n\n\n\n'" + data)
+        //         console.log("this returns plain index.html...? :" + data)
         //     },
         //     error: function (error) {
         //         console.log(error);

@@ -1,49 +1,33 @@
 <template>
   <div class="photo-detail">
       <div class="img-container" @click="testing()">
-          <img :src="selectedPhotoURL"/>
-          <h1 v-if="selectedPhotoTitle">{{selectedPhotoTitle}}</h1>
+          <img :src="mainPhotoObj.url"/>
+          <h1 v-if="mainPhotoObj.title">{{mainPhotoObj.title}}</h1>
           <h1 v-else>Untitled</h1>
-            <PhotoDescription :description="selectedPhotoDescription"></PhotoDescription>
-            <Rating :rating="selectedPhotoRating"></Rating>
+            <PhotoDescription :description="mainPhotoObj.description"></PhotoDescription>
+            <Rating :rating="mainPhotoObj.rating"></Rating>
       </div>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 import Rating from './Rating.vue';
 import PhotoDescription from './PhotoDescription.vue';
 import jsonData from '../api.json';
-import { EventBus } from '../eventBus.js';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'PhotoDetail',
     components: {
         Rating,
         PhotoDescription
-    },         
-    data () {
-        return {
-            mainPhotoObj: jsonData[0],
-            selectedPhotoURL: jsonData[0].url,
-            selectedPhotoTitle: jsonData[0].title,
-            selectedPhotoDescription: jsonData[0].description,
-            selectedPhotoRating: jsonData[0].rating
-        }
     },
     computed: {
         ...mapGetters([
-            'mainPhoto',
+            "mainPhotoObj"
         ]),
     },
     methods: {
-        displayPhoto(){
-            console.log('display main photo')
-            // return this.$store.getters.mainPhoto
-            store.dispatch('selectPhotoAction')
-        }
     },
     created () {
         // Listen for the selectedPhoto event and its payload.
@@ -56,7 +40,13 @@ export default {
         //         this.selectedPhotoDescription = self.mainPhotoObj.description
         //         this.selectedPhotoRating = self.mainPhotoObj.rating
         //     });
-        this.displayPhoto()
+        // this.$nextTick(()=>{
+        //     this.selectedPhotoURL = selectedPhotoURL,
+        //     this.mainPhoto = mainPhoto,
+        //     this.selectedPhotoTitle = selectedPhotoTitle,
+        //     this.selectedPhotoRating = selectedPhotoRating,
+        //     this.selectedPhotoDescription = selectedPhotoDescription
+        // })
     },
 }
 
