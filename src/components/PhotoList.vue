@@ -12,7 +12,7 @@
 
 <script>
 import jsonData from '../api.json'
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
 
@@ -27,30 +27,9 @@ export default {
       selectPhoto(photo){
         this.$store.dispatch('selectPhotoAction', photo)
       },
-      ...mapGetters([
-            'mainPhoto',
-        ]),
-  },
-  mounted:() => {
-        // $.ajax({
-        //     url: '../api.json',
-        //     method: 'GET',
-        //     success: function (data) {
-        //         console.log("this returns plain index.html...? :" + data)
-        //     },
-        //     error: function (error) {
-        //         console.log(error);
-        //     }
-        // });
-        console.log(jsonData)
-    },
+  }
 }
 </script>
-
-
-
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

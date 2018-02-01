@@ -15,13 +15,12 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   name: 'Rating',
   props:['rating'],
   data () {
     return {
-      msg: 'star star star'
+      msg: ''
     }
   }
 }
@@ -29,10 +28,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .rating{
   float:right;
-  display:inline-block;
   position:relative;
 }
 

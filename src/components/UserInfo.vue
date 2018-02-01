@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  /* eslint-disable */
   name: 'UserInfo',
   data () {
     return {

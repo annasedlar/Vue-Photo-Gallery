@@ -5,13 +5,12 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   name: 'PhotoDescription',
   props: ['description'],
   data () {
     return {
-      description: 'This is where the description will go'
+      description: ''
     }
   }
 }

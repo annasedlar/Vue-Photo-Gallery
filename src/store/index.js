@@ -8,7 +8,7 @@ export const store = new Vuex.Store({
   state: {
     mainPhotoObj: jsonData[0]
   },
-  
+
   mutations: {
     selectPhoto: (state, payload) => {
       state.mainPhotoObj = payload
@@ -18,7 +18,6 @@ export const store = new Vuex.Store({
   actions: {
     selectPhotoAction ({ commit }, payload) {
       commit('selectPhoto', payload)
-      // console.log(payload)
     }
   },
 
@@ -26,27 +25,3 @@ export const store = new Vuex.Store({
     mainPhotoObj: state => state.mainPhotoObj
   }
 })
-
-
-
-
-
-
-
-// export const getters = {
-//   mainPhoto (state) {
-//     return state.mainPhotoObj
-//   }
-// }
-
-// export const actions = {
-//   setIsHeaderVisible ({ commit }, payload) {
-//     commit('IS_HEADER_VISIBLE', payload)
-//   }
-// }
-
-// export const mutations = {
-//   IS_HEADER_VISIBLE (state, data) {
-//     state.isHeaderVisible = data
-//   }
-// }

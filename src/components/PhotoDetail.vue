@@ -1,9 +1,9 @@
 <template>
   <div class="photo-detail">
       <div class="img-container" @click="testing()">
-          <img :src="mainPhotoObj.url"/>
-          <h1 v-if="mainPhotoObj.title">{{mainPhotoObj.title}}</h1>
-          <h1 v-else>Untitled</h1>
+            <img :src="mainPhotoObj.url"/>
+            <h1 v-if="mainPhotoObj.title">{{mainPhotoObj.title}}</h1>
+            <h1 v-else>Untitled</h1>
             <PhotoDescription :description="mainPhotoObj.description"></PhotoDescription>
             <Rating :rating="mainPhotoObj.rating"></Rating>
       </div>
@@ -26,27 +26,6 @@ export default {
         ...mapGetters([
             "mainPhotoObj"
         ]),
-    },
-    methods: {
-    },
-    created () {
-        // Listen for the selectedPhoto event and its payload.
-        // let self = this;
-        // EventBus.$on('selectedPhoto', photo => {
-        //     self.mainPhotoObj = photo 
-        //     this.$nextTick(function() {
-        //         this.selectedPhotoURL = self.mainPhotoObj.url
-        //         this.selectedPhotoTitle = self.mainPhotoObj.title
-        //         this.selectedPhotoDescription = self.mainPhotoObj.description
-        //         this.selectedPhotoRating = self.mainPhotoObj.rating
-        //     });
-        // this.$nextTick(()=>{
-        //     this.selectedPhotoURL = selectedPhotoURL,
-        //     this.mainPhoto = mainPhoto,
-        //     this.selectedPhotoTitle = selectedPhotoTitle,
-        //     this.selectedPhotoRating = selectedPhotoRating,
-        //     this.selectedPhotoDescription = selectedPhotoDescription
-        // })
     },
 }
 
