@@ -16,6 +16,7 @@ import Rating from './Rating.vue';
 import PhotoDescription from './PhotoDescription.vue';
 import jsonData from '../api.json';
 import { EventBus } from '../eventBus.js';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
     name: 'PhotoDetail',
@@ -32,26 +33,33 @@ export default {
             selectedPhotoRating: jsonData[0].rating
         }
     },
-    created () {
-        // Listen for the selectedPhoto event and its payload.
-        let self = this;
-        EventBus.$on('selectedPhoto', photo => {
-            self.mainPhotoObj = photo 
-            this.$nextTick(function() {
-                this.selectedPhotoURL = self.mainPhotoObj.url
-                this.selectedPhotoTitle = self.mainPhotoObj.title
-                this.selectedPhotoDescription = self.mainPhotoObj.description
-                this.selectedPhotoRating = self.mainPhotoObj.rating
-            });
-        });
+    computed: {
+        ...mapGetters([
+            'mainPhoto',
+        ]),
     },
     methods: {
-        testing(){
-            // console.log()
-            console.log(">>>>>>  " + this)
-        },
-    }
+        displayPhoto(){
+            console.log('display main photo')
+            // return this.$store.getters.mainPhoto
+            store.dispatch('selectPhotoAction')
+        }
+    },
+    created () {
+        // Listen for the selectedPhoto event and its payload.
+        // let self = this;
+        // EventBus.$on('selectedPhoto', photo => {
+        //     self.mainPhotoObj = photo 
+        //     this.$nextTick(function() {
+        //         this.selectedPhotoURL = self.mainPhotoObj.url
+        //         this.selectedPhotoTitle = self.mainPhotoObj.title
+        //         this.selectedPhotoDescription = self.mainPhotoObj.description
+        //         this.selectedPhotoRating = self.mainPhotoObj.rating
+        //     });
+        this.displayPhoto()
+    },
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

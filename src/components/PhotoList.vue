@@ -15,6 +15,9 @@
 // import $ from 'jquery';
 import jsonData from '../api.json'
 import { EventBus } from '../eventBus.js'
+import { mapState, mapGetters, mapActions } from 'vuex'
+import store from '../store/index.js'
+
 
 export default {
   /* eslint-disable */
@@ -25,12 +28,18 @@ export default {
       selectedPhoto: jsonData[0],
     }
   },
-  methods: {
+  computed: {
       selectPhoto(photo){
-          this.selectedPhoto = photo
+        store.dispatch('selectPhotoAction')
+        console.log('dispatched')
+        // this.selectedPhoto = photo
         //   Here is where you will use VueX, for now, event bus
-        EventBus.$emit('selectedPhoto', this.selectedPhoto);
-      }
+        // EventBus.$emit('selectedPhoto', this.selectedPhoto);
+        // this.$store.commit('selectPhoto', this.selectedPhoto)
+      },
+      ...mapGetters([
+            'mainPhoto',
+        ]),
   },
   mounted:() => {
         // $.ajax({
@@ -44,9 +53,14 @@ export default {
         //     }
         // });
         console.log(jsonData)
-    }
+    },
 }
 </script>
+
+
+
+
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
