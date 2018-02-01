@@ -1,7 +1,6 @@
 <template>
   <div class="photo-detail">
       <div class="img-container" @click="testing()">
-          <!-- <img :src="photos[0].url"/> -->
           <img :src="selectedPhotoURL"/>
           <h1 v-if="selectedPhotoTitle">{{selectedPhotoTitle}}</h1>
           <h1 v-else>Untitled</h1>
@@ -12,6 +11,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Rating from './Rating.vue';
 import PhotoDescription from './PhotoDescription.vue';
 import jsonData from '../api.json';

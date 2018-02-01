@@ -2,7 +2,7 @@
   <div class="thumbnail-list">
       <h1>Photo Roll</h1>
         <ul>
-        <li v-for="photo in photos">
+        <li v-for="photo in photos" :key="photo">
             <img :src="photo.url" @click="selectPhoto(photo)" />
             <p>{{photo.title}}</p>
         </li>
@@ -13,10 +13,11 @@
 <script>
 
 // import $ from 'jquery';
-import jsonData from '../api.json';
-import { EventBus } from '../eventBus.js';
+import jsonData from '../api.json'
+import { EventBus } from '../eventBus.js'
 
 export default {
+  /* eslint-disable */
   name: 'PhotoList',
   data () {
     return {

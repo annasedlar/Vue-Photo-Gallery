@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import PhotoDetail from './components/PhotoDetail'
 import PhotoList from './components/PhotoList'
 import UserInfo from './components/UserInfo'

@@ -1,16 +1,21 @@
 <template>
   <div class="rating">
       <p>Rating: {{rating}} stars</p>
-      <span class='stars' v-for="star in 5">
-        &#10025;
-      </span>
-      <span class='stars overlay' v-for="star in rating">
-        &#9733;
-      </span>
+        <div class="right">
+          <span class='stars' v-for="star in 5" :key="star">
+            &#10025;
+          </span>
+        </div>
+        <div class="right">
+          <span class='stars overlay' v-for="star in rating" :key="star">
+             &#9733;
+          </span>
+        </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: 'Rating',
   props:['rating'],
@@ -39,6 +44,12 @@ export default {
 
 .overlay{
   position: relative;
+  font-size: 8px;
   z-index: 2
+}
+
+.right{
+  position:absolute;
+  left:0
 }
 </style>
