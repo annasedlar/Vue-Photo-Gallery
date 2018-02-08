@@ -5,6 +5,9 @@ import UserInfo from '@/components/UserInfo'
 import PhotoDescription from '@/components/PhotoDescription'
 import Rating from '@/components/Rating'
 import sinon from 'sinon'
+import Vuex from 'vuex'
+import jsonData from '@/api.json'
+
 
 describe('UserInfo.vue', () => {
   it('renders the correct default data', () => {
@@ -15,36 +18,81 @@ describe('UserInfo.vue', () => {
   })
 })
 
-describe('PhotoDescription.vue', () => {
-  it('should render correct contents', () => {
-    const Constructor = Vue.extend(PhotoDescription)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.description').textContent)
-      .to.equal('This is where the description will go')
+describe('PhotoList.vue', () => {
+  describe('rendering', () =>{
+    // test that the photo roll is rendered
+  })
+  describe('Clicking a Thumbnail', () => {
+    it('dispatches the select photo action to vuex', () => {
+      let photo = jsonData[0]
+      let mockState = {};
+      let store = {
+        dispatch: sinon.spy()
+      }
+      // let store = new Vuex.Store({
+      //   state: mockState
+      // });
+      // sinon.spy(store, 'dispatch');
+
+      // (arrange, act, assert)
+      // given I have a photoList
+      const Constructor = Vue.extend(PhotoList)
+      const vm = new Constructor({ store }).$mount()
+
+      // when I click a photo
+      const element = vm.$el.querySelector('img');
+      if (element) element.click();
+
+      // then, the correct action is dispatched to vuex
+      // expect(store.dispatch).to.be.called;
+      // expect(store.dispatch).to.be.calledWith('selectPhotoAction');
+      expect(store.dispatch).to.be.calledWith('selectPhotoAction', photo);
+    })
+
+    it('selectPhoto method is called ', () => {
+      let store = {
+        dispatch: () =>{
+
+        }
+      }
+
+      // given
+      const Constructor = Vue.extend(PhotoList)
+      const vm = new Constructor( {store} ).$mount()
+
+      // when
+      sinon.spy(vm, 'selectPhoto');
+      const element = vm.$el.querySelector('img');
+      if (element) element.click();
+
+      // then
+      expect(vm.selectPhoto).to.be.called;
+    })
   })
 })
 
-describe('PhotoDetail.vue', () => {
-  it(`should update when photo description is changed.`, done => {
-    const Constructor = Vue.extend(PhotoDetail);
-    const comp = new Constructor().$mount();
-    data () {
-      return {
-          mainPhotoObj: jsonData[0],
-          selectedPhotoURL: jsonData[0].url,
-          selectedPhotoTitle: jsonData[0].title,
-          selectedPhotoDescription: jsonData[0].description,
-          selectedPhotoRating: jsonData[0].rating
-      }
-    }
-    Vue.nextTick(() => {
-      expect(comp.$el.querySelector('.photo-detail').textContent)
-        .to.equal('A Puffin Description: Gazing at the sea  Rating: 5 stars');
-      // Since we're doing this asynchronously, we need to call done() to tell Mocha that we've finished the test.
-      done();
-    });
-  });
-});
+
+// describe('PhotoDetail.vue', () => {
+//   it(`should update when photo description is changed.`, done => {
+//     const Constructor = Vue.extend(PhotoDetail);
+//     const comp = new Constructor().$mount();
+//     // data () {
+//     //   return {
+//     //       mainPhotoObj: jsonData[0],
+//     //       selectedPhotoURL: jsonData[0].url,
+//     //       selectedPhotoTitle: jsonData[0].title,
+//     //       selectedPhotoDescription: jsonData[0].description,
+//     //       selectedPhotoRating: jsonData[0].rating
+//     //   }
+//     }
+//     Vue.nextTick(() => {
+//       expect(comp.$el.querySelector('.photo-detail').textContent)
+//         .to.equal('A Puffin Description: Gazing at the sea  Rating: 5 stars');
+//       // Since we're doing this asynchronously, we need to call done() to tell Mocha that we've finished the test.
+//       done();
+//     })
+//   })
+// })
 
 describe('PhotoList.vue', () => {
   beforeEach(() => {
@@ -117,3 +165,4 @@ describe('PhotoList.vue', () => {
 //       .to.equal('Welcome to Your Vue.js App')
 //   })
 // })
+
